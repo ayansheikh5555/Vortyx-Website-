@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vortyx — Terms of Service</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        darkBg: '#08080c',
+                        darkCard: '#0f0f15',
+                        vortyxGreen: '#00ff66',
+                        vortyxMuted: '#64748b',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;600;800&family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap');
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #08080c;
+            background-image: radial-gradient(rgba(255, 255, 255, 0.01) 1px, transparent 0);
+            background-size: 24px 24px;
+        }
+        .code-font {
+            font-family: 'JetBrains Mono', monospace;
+        }
+    </style>
+</head>
+<body class="text-white selection:bg-vortyxGreen selection:text-black overflow-x-hidden">
+
+    <!-- FIXED & CENTERED NAVBAR -->
+    <header class="sticky top-0 z-50 backdrop-blur-md bg-darkBg/80 border-b border-white/5 py-4 px-6 md:px-12 flex justify-between items-center">
+        <a href="index.html" class="flex items-center gap-3 z-10">
+            <img src="https://cdn.discordapp.com/attachments/1468117511223644171/1526473821861711942/logo.png?ex=6a572707&is=6a55d587&hm=3416e4d1fd75ea0a2238e6600f846e381d2319320efc0fdf41f101d2e79a8be6&" class="w-9 h-9 rounded-full border border-vortyxGreen/30 shadow-md shadow-vortyxGreen/10 object-cover" alt="Vortyx Avatar">
+            <span class="text-xl font-bold tracking-wide code-font">Vortyx<span class="text-vortyxGreen">_</span></span>
+        </a>
+        
+        <!-- Center Aligned Links -->
+        <nav class="hidden md:flex absolute left-1/2 -translate-x-1/2 gap-6 text-sm text-gray-400 font-medium">
+            <a href="index.html" class="hover:text-white transition">Features</a>
+            <a href="commands.html" class="hover:text-white transition">Commands</a>
+            <a href="status.html" class="hover:text-white transition">Status</a>
+            <a href="premium.html" class="hover:text-white transition">Premium</a>
+            <a href="about.html" class="hover:text-white transition">About</a>
+            <a href="faq.html" class="hover:text-white transition">FAQ</a>
+        </nav>
+        
+        <a href="https://discord.com/oauth2/authorize?client_id=1524664608768655441&permissions=8&integration_type=0&scope=bot+applications.commands" target="_blank" class="bg-vortyxGreen/10 border border-vortyxGreen text-vortyxGreen px-4 py-1.5 rounded-full text-xs font-semibold hover:bg-vortyxGreen hover:text-black transition duration-300 z-10">
+            <i class="fa-solid fa-right-to-bracket mr-1.5"></i>Login
+        </a>
+    </header>
+
+    <!-- CONTENT SECTION -->
+    <main class="py-16 px-6 max-w-4xl mx-auto">
+        
+        <!-- HEADER MODULE (MATCHING SCREENSHOT LAYOUT) -->
+        <div class="flex flex-col items-center text-center mb-10">
+            <div class="w-20 h-20 rounded-full border border-vortyxGreen/30 p-1 mb-6 shadow-[0_0_20px_rgba(0,255,102,0.15)]">
+                <img src="https://cdn.discordapp.com/attachments/1468117511223644171/1526473821861711942/logo.png?ex=6a572707&is=6a55d587&hm=3416e4d1fd75ea0a2238e6600f846e381d2319320efc0fdf41f101d2e79a8be6&" class="w-full h-full rounded-full object-cover" alt="Vortyx Logo">
+            </div>
+            <h1 class="text-4xl md:text-5xl font-extrabold code-font tracking-tight mb-2">Terms of Service</h1>
+            <p class="text-xs text-vortyxMuted code-font">Effective Date: July 10, 2026</p>
+        </div>
+
+        <!-- STYLE MATCHING DISCLAIMER CARD -->
+        <div class="bg-white/[0.02] border border-white/5 border-l-[3px] border-l-vortyxGreen p-5 rounded-r-xl mb-12">
+            <p class="text-[11px] md:text-xs text-gray-400 font-semibold uppercase tracking-wider leading-relaxed">
+                PLEASE READ THESE TERMS OF SERVICE CAREFULLY. BY ACCESSING OR USING VORTYX, YOU AGREE TO BE BOUND BY THESE TERMS AND ALL TERMS INCORPORATED BY REFERENCE. IF YOU DO NOT AGREE TO ALL OF THESE TERMS, DO NOT USE VORTYX.
+            </p>
+        </div>
+
+        <!-- MAIN DOCUMENT CONTENT -->
+        <div class="space-y-10 text-sm text-gray-300 leading-relaxed">
+            
+            <!-- SECTION 1 -->
+            <section class="border-b border-white/5 pb-8">
+                <h2 class="text-lg font-bold code-font text-vortyxGreen mb-4">1. Agreement to Terms</h2>
+                <p>
+                    These Terms of Service ("Terms") constitute a legally binding agreement between you ("User", "you", or "your") and the developers of Vortyx ("we", "us", "our"). By inviting the Vortyx bot ("Service", "Bot") to a Discord server, or by using its features, commands, or dashboard, you acknowledge that you have read, understood, and agree to be bound by these Terms.
+                </p>
+            </section>
+
+            <!-- SECTION 2 -->
+            <section class="border-b border-white/5 pb-8">
+                <h2 class="text-lg font-bold code-font text-vortyxGreen mb-4">2. Service Usage & License</h2>
+                <p class="mb-4">
+                    Subject to your compliance with these Terms, we grant you a limited, non-exclusive, non-sublicensable, revocable, non-transferable license to access and use the Service for your personal or internal community management purposes.
+                </p>
+
+                <h3 class="text-white font-semibold text-xs uppercase tracking-wider mb-2 code-font">&gt; 2.1 Restricted Activities</h3>
+                <p class="mb-3 text-gray-400">You agree NOT to:</p>
+                <ul class="space-y-2 pl-4 border-l border-white/10">
+                    <li><strong class="text-white">Law Compliance:</strong> Use the Service for any illegal purpose or in violation of any local, state, national, or international law.</li>
+                    <li><strong class="text-white">Rights Violations:</strong> Violate, or encourage the violation of, the legal rights of others (including intellectual property rights).</li>
+                    <li><strong class="text-white">Malicious Software:</strong> Use the Service to distribute malware, viruses, or harmful code.</li>
+                    <li><strong class="text-white">Code Security:</strong> Attempt to reverse engineer, decompile, or disassemble the Bot's source code.</li>
+                    <li><strong class="text-white">Redistribution:</strong> Resell, rent, lease, or sublicense the Service without our express written consent.</li>
+                    <li><strong class="text-white">Abusive Conduct:</strong> Use the Service to harass, abuse, or harm another person or group, or to incite violence or hatred.</li>
+                    <li><strong class="text-white">Integrity Attacks:</strong> Interfere with security-related features of the Service, including those that prevent or restrict use or copying of any content.</li>
+                </ul>
+            </section>
+
+            <!-- SECTION 3 -->
+            <section class="border-b border-white/5 pb-8">
+                <h2 class="text-lg font-bold code-font text-vortyxGreen mb-4">3. Compliance with Discord Policies</h2>
+                <p>
+                    Your use of Vortyx is also subject to Discord's 
+                    <a href="https://discord.com/terms" target="_blank" class="text-vortyxGreen hover:underline font-semibold">Terms of Service</a> 
+                    and 
+                    <a href="https://discord.com/guidelines" target="_blank" class="text-vortyxGreen hover:underline font-semibold">Community Guidelines</a>. 
+                    You explicitly agree not to use the Bot in a manner that violates these policies. We reserve the right to report any severe violations to Discord's Trust and Safety team.
+                </p>
+            </section>
+
+            <!-- SECTION 4 -->
+            <section class="border-b border-white/5 pb-8">
+                <h2 class="text-lg font-bold code-font text-vortyxGreen mb-4">4. Premium Subscriptions</h2>
+                
+                <h3 class="text-white font-semibold text-xs uppercase tracking-wider mb-2 code-font">&gt; 4.1 Payment Terms</h3>
+                <p class="mb-4">
+                    Certain features are accessible only via paid subscriptions ("Premium Tier"). By upgrading, you agree to pay the fees quoted at the time of purchase. All fees are inclusive of applicable taxes unless stated otherwise.
+                </p>
+
+                <h3 class="text-white font-semibold text-xs uppercase tracking-wider mb-2 code-font">&gt; 4.2 Renewal & Cancellation</h3>
+                <p>
+                    Subscriptions may auto-renew depending on the payment provider. You may cancel your subscription at any time; however, you will remain liable for all charges accrued up to that time. Canceling stops future billing but does not retroactively refund previous payments.
+                </p>
+            </section>
+
+            <!-- SECTION 5 -->
+            <section class="border-b border-white/5 pb-8">
+                <h2 class="text-lg font-bold code-font text-vortyxGreen mb-4">5. Intellectual Property</h2>
+                <p>
+                    The Service, including its "Vortyx" name, logo, original code, text, graphics, and interactive features, are the intellectual property of the developers and are protected by copyright, trademark, and other laws. You do not acquire any ownership rights by using the Service.
+                </p>
+            </section>
+
+            <!-- SECTION 6 -->
+            <section class="border-b border-white/5 pb-8">
+                <h2 class="text-lg font-bold code-font text-vortyxGreen mb-4">6. Disclaimer of Warranties</h2>
+                <div class="bg-white/[0.01] border border-white/5 p-4 rounded-xl">
+                    <p class="text-xs uppercase tracking-wide text-gray-400 font-bold mb-2">READ CAREFULLY:</p>
+                    <p class="text-gray-300">
+                        THE SERVICE IS PROVIDED ON AN "AS IS" AND "AS AVAILABLE" BASIS. TO THE FULLEST EXTENT PERMITTED BY LAW, WE DISCLAIM ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT. WE DO NOT GUARANTEE THAT THE SERVICE WILL BE UNINTERRUPTED, SECURE, OR ERROR-FREE.
+                    </p>
+                </div>
+            </section>
+
+            <!-- SECTION 7 -->
+            <section class="border-b border-white/5 pb-8">
+                <h2 class="text-lg font-bold code-font text-vortyxGreen mb-4">7. Limitation of Liability</h2>
+                <p>
+                    IN NO EVENT SHALL VORTYX OR ITS DEVELOPERS BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, INCLUDING (WITHOUT LIMITATION) LOSS OF PROFITS, DATA, USE, GOODWILL, OR OTHER INTANGIBLE LOSSES, RESULTING FROM (i) YOUR ACCESS TO OR USE OF OR INABILITY TO ACCESS OR USE THE SERVICE; (ii) ANY CONDUCT OR CONTENT OF ANY THIRD PARTY ON THE SERVICE; OR (iii) UNAUTHORIZED ACCESS, USE, OR ALTERATION OF YOUR TRANSMISSIONS OR CONTENT.
+                </p>
+            </section>
+
+            <!-- SECTION 8 -->
+            <section class="border-b border-white/5 pb-8">
+                <h2 class="text-lg font-bold code-font text-vortyxGreen mb-4">8. Indemnification</h2>
+                <p>
+                    You agree to defend, indemnify, and hold harmless Vortyx, its developers, and affiliates from and against any claims, liabilities, damages, losses, and expenses, including reasonable legal and accounting fees, arising out of or in any way connected with your access to or use of the Service or your violation of these Terms.
+                </p>
+            </section>
+
+            <!-- SECTION 9 -->
+            <section class="border-b border-white/5 pb-8">
+                <h2 class="text-lg font-bold code-font text-vortyxGreen mb-4">9. Changes to Terms</h2>
+                <p>
+                    We may modify these Terms at any time. If we do so, we will post the changes on this page and indicate the date these terms were last revised. Your continued use of the Service after any such changes constitutes your acceptance of the new Terms.
+                </p>
+            </section>
+
+            <!-- SECTION 10 -->
+            <section class="pb-4">
+                <h2 class="text-lg font-bold code-font text-vortyxGreen mb-4">10. Contact Information</h2>
+                <p>
+                    For any questions about these Terms, please contact us via our Support Server or direct your email inquiries to 
+                    <a href="mailto:sqayangamer@gmail.com" class="text-vortyxGreen underline">sqayangamer@gmail.com</a>.
+                </p>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- FOOTER SECTION -->
+    <footer class="bg-black/40 border-t border-white/5 py-12 px-6 md:px-12 text-sm text-vortyxMuted">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+            <div>
+                <p class="text-white font-bold tracking-wide code-font mb-1">Vortyx Bot</p>
+                <p class="text-xs mb-3">© 2026 Vortyx Inc. All rights reserved.</p>
+                
+                <div class="flex gap-4 text-xs font-medium">
+                    <a href="tos.html" class="text-vortyxGreen font-bold transition code-font">&gt; Terms of Service</a>
+                    <span class="text-white/10">|</span>
+                    <a href="policy.html" class="hover:text-vortyxGreen text-gray-400 transition code-font">&gt; Privacy Policy</a>
+                </div>
+            </div>
+            <div class="flex gap-6 text-gray-400">
+                <a href="https://discord.gg/qdh44Zev8G" target="_blank" class="hover:text-vortyxGreen transition">Support</a>
+                <a href="commands.html" class="hover:text-vortyxGreen transition">Commands</a>
+                <a href="premium.html" class="hover:text-vortyxGreen transition">Pricing</a>
+                <a href="status.html" class="hover:text-vortyxGreen transition">Status</a>
+                <a href="about.html" class="hover:text-vortyxGreen transition">About</a>
+                <a href="faq.html" class="hover:text-vortyxGreen transition">FAQ</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+                  </html>
+                  
