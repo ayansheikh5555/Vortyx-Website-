@@ -133,7 +133,7 @@
             max-width: 750px;
             display: flex;
             flex-direction: column;
-            gap: 25px;
+            gap: 20px;
             margin-top: 20px;
         }
 
@@ -146,7 +146,7 @@
             border: 1px solid rgba(17, 219, 132, 0.15);
             padding: 4px 10px;
             border-radius: 4px;
-            align-self: flex-start;
+            align-self: center;
             letter-spacing: 1px;
         }
 
@@ -156,7 +156,8 @@
             font-size: 2.5rem;
             font-weight: bold;
             letter-spacing: -1px;
-            margin-bottom: 5px;
+            margin-bottom: 2px;
+            text-align: center;
         }
 
         .blinking-cursor {
@@ -166,9 +167,55 @@
 
         /* Paragraphs styling */
         .desc-text {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             line-height: 1.6;
             color: #8892b0;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        /* -------------------------------------------
+           SEARCH BAR STYLING
+        ------------------------------------------- */
+        .search-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 750px;
+            margin: 10px auto 25px auto;
+        }
+
+        .search-input {
+            width: 100%;
+            background-color: #0c0d12;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 30px;
+            padding: 15px 20px 15px 48px;
+            color: #ffffff;
+            font-family: inherit;
+            font-size: 0.85rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            border-color: rgba(17, 219, 132, 0.4);
+            box-shadow: 0 0 15px rgba(17, 219, 132, 0.05);
+            background-color: #0e1017;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #4a5568;
+            font-size: 0.9rem;
+            pointer-events: none;
+            transition: color 0.3s ease;
+        }
+
+        .search-input:focus + .search-icon {
+            color: #11db84;
         }
 
         /* -------------------------------------------
@@ -178,7 +225,6 @@
             display: flex;
             flex-direction: column;
             gap: 12px;
-            margin-top: 15px;
         }
 
         .faq-item {
@@ -190,7 +236,7 @@
         }
 
         .faq-item:hover {
-            border-color: #11db84;
+            border-color: rgba(17, 219, 132, 0.3);
         }
 
         .faq-question {
@@ -198,25 +244,40 @@
             background: none;
             border: none;
             outline: none;
-            padding: 18px 20px;
+            padding: 16px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             cursor: pointer;
             text-align: left;
             color: #e2e8f0;
-            font-size: 0.95rem;
+            font-size: 0.85rem;
             font-weight: 500;
             font-family: inherit;
             transition: color 0.3s ease;
+        }
+
+        .faq-question-text {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .faq-question-text i {
+            color: #64748b;
+            font-size: 0.85rem;
         }
 
         .faq-question:hover {
             color: #11db84;
         }
 
+        .faq-question:hover .faq-question-text i {
+            color: #11db84;
+        }
+
         .faq-icon {
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             color: #64748b;
             transition: transform 0.3s ease, color 0.3s ease;
         }
@@ -226,6 +287,10 @@
         }
 
         .faq-item.active .faq-question {
+            color: #11db84;
+        }
+
+        .faq-item.active .faq-question-text i {
             color: #11db84;
         }
 
@@ -240,13 +305,22 @@
             transition: max-height 0.3s ease-out;
             background-color: #0b0c10;
             color: #94a3b8;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             line-height: 1.6;
         }
 
         .faq-answer-content {
-            padding: 20px;
+            padding: 18px 20px 18px 48px;
             border-top: 1px solid rgba(255,255,255,0.02);
+        }
+
+        /* Not found warning */
+        .no-results {
+            text-align: center;
+            padding: 40px 20px;
+            color: #64748b;
+            font-size: 0.9rem;
+            display: none;
         }
 
         @media (max-width: 768px) {
@@ -265,7 +339,7 @@
 <!-- FIXED NAVIGATION HEADER SECTION (CENTERED) -->
 <nav class="navbar">
     <a href="index.html" class="nav-logo">
-        <img src="logo.png" alt="Vortyx Logo">
+        <img src="https://cdn.discordapp.com/attachments/1468117511223644171/1526473821861711942/logo.png?ex=6a572707&is=6a55d587&hm=3416e4d1fd75ea0a2238e6600f846e381d2319320efc0fdf41f101d2e79a8be6&" alt="Vortyx Logo">
         Vortyx
     </a>
     
@@ -281,7 +355,7 @@
     </div>
 
     <div class="nav-right">
-        <a href="https://discord.com/oauth2/authorize?client_id=YOUR_CLIENT_ID" class="login-btn" target="_blank"><i class="fa-brands fa-discord"></i> Login</a>
+        <a href="https://discord.com/oauth2/authorize?client_id=1524664608768655441&permissions=8&integration_type=0&scope=bot+applications.commands" class="login-btn" target="_blank"><i class="fa-brands fa-discord"></i> Login</a>
     </div>
 </nav>
 
@@ -292,19 +366,29 @@
 
     <h1 class="main-heading">frequently_asked<span class="blinking-cursor">_</span></h1>
 
-    <p class="desc-text">> Get instant answers regarding Vortyx setup, module permissions, and dashboard settings below.</p>
+    <p class="desc-text">> Everything you need to know about setting up and using Vortyx.</p>
+
+    <!-- SEARCH INPUT FIELD -->
+    <div class="search-wrapper">
+        <input type="text" id="faqSearch" class="search-input" placeholder="Search keywords...">
+        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+    </div>
 
     <!-- FAQ Wrapper -->
-    <div class="faq-wrapper">
+    <div class="faq-wrapper" id="faqWrapper">
+        
         <!-- FAQ Item 1 -->
         <div class="faq-item">
             <button class="faq-question">
-                <span>? How does the Anti-Nuke system protect my server?</span>
-                <span class="faq-icon">▼</span>
+                <span class="faq-question-text">
+                    <i class="fa-regular fa-circle-question"></i>
+                    How does the Anti-Nuke system protect my server?
+                </span>
+                <span class="faq-icon"><i class="fa-solid fa-chevron-down"></i></span>
             </button>
             <div class="faq-answer">
                 <div class="faq-answer-content">
-                    Vortyx's Anti-Nuke system intercepts actions like rapid channel deletions, role changes, and mass kicks/bans. It instantly revokes permissions from the suspect user and restores the damaged channels or roles automatically.
+                    Vortyx's Anti-Nuke system monitors unauthorized massive actions in real-time. If anyone attempts mass kicks, bans, or channel/role deletions, the bot instantly strips their permissions and automatically restores deleted structures using saved database logs.
                 </div>
             </div>
         </div>
@@ -312,12 +396,15 @@
         <!-- FAQ Item 2 -->
         <div class="faq-item">
             <button class="faq-question">
-                <span>? What is the difference between Free and Premium?</span>
-                <span class="faq-icon">▼</span>
+                <span class="faq-question-text">
+                    <i class="fa-regular fa-circle-question"></i>
+                    What is the difference between Free and Premium tiers?
+                </span>
+                <span class="faq-icon"><i class="fa-solid fa-chevron-down"></i></span>
             </button>
             <div class="faq-answer">
                 <div class="faq-answer-content">
-                    While our Core security features are free, Premium unlocks advanced custom command creations, custom vanity role structures, full 24/7 online voice support, and locked backup vaults for your guild database.
+                    Core security, auto-mod, and standard moderation are completely free. Premium unlocks advanced customized thresholds, bypass settings, premium audio clusters, automatic multi-guild cloud backups, and direct 24/7 priority support.
                 </div>
             </div>
         </div>
@@ -325,44 +412,156 @@
         <!-- FAQ Item 3 -->
         <div class="faq-item">
             <button class="faq-question">
-                <span>? Is Vortyx secure and compliant with Discord Terms of Service?</span>
-                <span class="faq-icon">▼</span>
+                <span class="faq-question-text">
+                    <i class="fa-regular fa-circle-question"></i>
+                    Is Vortyx safe to add to my server?
+                </span>
+                <span class="faq-icon"><i class="fa-solid fa-chevron-down"></i></span>
             </button>
             <div class="faq-answer">
                 <div class="faq-answer-content">
-                    Absolutely! Vortyx uses official Discord API v10 endpoints, respects all rate-limits, and does not harvest any private messages or personal user data.
+                    Yes, Vortyx is built using modern security protocols and Discord API v10 compliance. We host servers securely, use end-to-end encrypted databases, and only request permissions essential for system defence and basic utility management.
                 </div>
             </div>
         </div>
-    </div>
 
-</div>
+        <!-- FAQ Item 4 -->
+        <div class="faq-item">
+            <button class="faq-question">
+                <span class="faq-question-text">
+                    <i class="fa-regular fa-circle-question"></i>
+                    How do I configure the Auto-Moderation filters?
+                </span>
+                <span class="faq-icon"><i class="fa-solid fa-chevron-down"></i></span>
+            </button>
+            <div class="faq-answer">
+                <div class="faq-answer-content">
+                    You can configure Auto-Mod by typing `/automod config` in your server or accessing our dashboard. From there, you can easily tweak limits for spamming, block caps, filter bad words, and restrict malicious links instantly.
+                </div>
+            </div>
+        </div>
 
-<!-- JAVASCRIPT FOR FAQ ACCORDION EXPAND/COLLAPSE -->
-<script>
-    document.querySelectorAll('.faq-question').forEach(button => {
-        button.addEventListener('click', () => {
-            const faqItem = button.parentElement;
-            const answer = faqItem.querySelector('.faq-answer');
+        <!-- FAQ Item 5 -->
+        <div class="faq-item">
+            <button class="faq-question">
+                <span class="faq-question-text">
+                    <i class="fa-regular fa-circle-question"></i>
+                    Can I listen to music from Spotify and YouTube?
+                </span>
+                <span class="faq-icon"><i class="fa-solid fa-chevron-down"></i></span>
+            </button>
+            <div class="faq-answer">
+                <div class="faq-answer-content">
+                    Absolutely! Use the `/play` command followed by any song link or name. Our system supports high-quality music streaming from Spotify, YouTube, SoundCloud, and Twitch with zero latency.
+                </div>
+            </div>
+        </div>
 
-            // Doosre active sections ko automatically close karne ke liye:
-            document.querySelectorAll('.faq-item').forEach(item => {
-                if (item !== faqItem && item.classList.contains('active')) {
-                    item.classList.remove('active');
-                    item.querySelector('.faq-answer').style.maxHeight = null;
-                }
-            });
+        <!-- FAQ Item 6 -->
+        <div class="faq-item">
+            <button class="faq-question">
+                <span class="faq-question-text">
+                    <i class="fa-regular fa-circle-question"></i>
+                    What happens if the bot goes offline?
+                </span>
+                <span class="faq-icon"><i class="fa-solid fa-chevron-down"></i></span>
+            </button>
+            <div class="faq-answer">
+                <div class="faq-answer-content">
+                    We maintain a 99.9% uptime thanks to cluster systems. If a temporary gateway outage occurs, back-up shards spin up immediately, ensuring your security settings remain locally cached and active within your Discord environment.
+                </div>
+            </div>
+        </div>
 
-            faqItem.classList.toggle('active');
+        <!-- FAQ Item 7 -->
+        <div class="faq-item">
+            <button class="faq-question">
+                <span class="faq-question-text">
+                    <i class="fa-regular fa-circle-question"></i>
+                    How can I set up a Welcome Message for new members?
+                </span>
+                <span class="faq-icon"><i class="fa-solid fa-chevron-down"></i></span>
+            </button>
+            <div class="faq-answer">
+                <div class="faq-answer-content">
+                    Use the `/welcome set` command or configure it inside the Greeting module on the web panel. You can customize rich embed alerts, embed images, dynamically mention new users, and automatically assign standard starter roles.
+                </div>
+            </div>
+        </div>
 
-            if (faqItem.classList.contains('active')) {
-                answer.style.maxHeight = answer.scrollHeight + "px";
-            } else {
-                answer.style.maxHeight = null;
-            }
-        });
-    });
-</script>
+        <!-- FAQ Item 8 -->
+        <div class="faq-item">
+            <button class="faq-question">
+                <span class="faq-question-text">
+                    <i class="fa-regular fa-circle-question"></i>
+                    Does Vortyx support multiple languages?
+                </span>
+                <span class="faq-icon"><i class="fa-solid fa-chevron-down"></i></span>
+            </button>
+            <div class="faq-answer">
+                <div class="faq-answer-content">
+                    Yes! Vortyx is built for global communities. Administrators can switch server languages dynamically using the `/language` configuration command.
+                </div>
+            </div>
+        </div>
 
-</body>
-</html>
+        <!-- FAQ Item 9 -->
+        <div class="faq-item">
+            <button class="faq-question">
+                <span class="faq-question-text">
+                    <i class="fa-regular fa-circle-question"></i>
+                    How do I whitelist a user from Anti-Nuke checks?
+                </span>
+                <span class="faq-icon"><i class="fa-solid fa-chevron-down"></i></span>
+            </button>
+            <div class="faq-answer">
+                <div class="faq-answer-content">
+                    Only the Server Owner can use the `/whitelist add` command to bypass users from security alerts. Whitelisted administrators can manage the server normally without triggering the bot's anti-nuke mechanisms.
+                </div>
+            </div>
+        </div>
+
+        <!-- FAQ Item 10 -->
+        <div class="faq-item">
+            <button class="faq-question">
+                <span class="faq-question-text">
+                    <i class="fa-regular fa-circle-question"></i>
+                    Can I change the bot's prefix?
+                </span>
+                <span class="faq-icon"><i class="fa-solid fa-chevron-down"></i></span>
+            </button>
+            <div class="faq-answer">
+                <div class="faq-answer-content">
+                    Yes! Although modern Discord uses Slash Commands natively, you can customize the legacy text command prefix by running the `/prefix` command.
+                </div>
+            </div>
+        </div>
+
+        <!-- FAQ Item 11 -->
+        <div class="faq-item">
+            <button class="faq-question">
+                <span class="faq-question-text">
+                    <i class="fa-regular fa-circle-question"></i>
+                    Why isn't the bot responding to my commands?
+                </span>
+                <span class="faq-icon"><i class="fa-solid fa-chevron-down"></i></span>
+            </button>
+            <div class="faq-answer">
+                <div class="faq-answer-content">
+                    Ensure Vortyx has proper permissions (View Channel, Send Messages, Use Application Commands) in that specific channel. If the issue persists, verify the bot's status on our status panel or join our support server.
+                </div>
+            </div>
+        </div>
+
+        <!-- FAQ Item 12 -->
+        <div class="faq-item">
+            <button class="faq-question">
+                <span class="faq-question-text">
+                    <i class="fa-regular fa-circle-question"></i>
+                    Can I get a refund for Premium?
+                </span>
+                <span class="faq-icon"><i class="fa-solid fa-chevron-down"></i></span>
+            </button>
+            <div class="faq-answer">
+                <div class="faq-answer-content">
+                    We offer a 3-day money-back policy if 
