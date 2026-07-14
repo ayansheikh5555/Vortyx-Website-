@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ Section</title>
+    <style>
+        /* Base Styling (Apni website ke main CSS me adjust kar sakte hain) */
+        body {
+            background-color: #0b0c10;
+            color: #c5c6c7;
+            font-family: 'Courier New', Courier, monospace; /* Terminal style font */
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .faq-container {
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .faq-title-sub {
+            color: #1f2833;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-align: center;
+            margin-bottom: 5px;
+        }
+
+        .faq-title {
+            color: #ffffff;
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+
+        .faq-title span {
+            color: #11db84; /* Krypton style green accent */
+        }
+
+        /* Accordion Wrapper */
+        .faq-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        /* Individual FAQ Item */
+        .faq-item {
+            background-color: #12141c; /* Dark card background */
+            border: 1px solid #1f242e;
+            border-radius: 6px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            border-color: #11db84; /* Hover par green border */
+        }
+
+        /* Question Button */
+        .faq-question {
+            width: 100%;
+            background: none;
+            border: none;
+            outline: none;
+            padding: 18px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            text-align: left;
+            color: #e2e8f0;
+            font-size: 0.95rem;
+            font-weight: 500;
+            font-family: inherit;
+            transition: color 0.3s ease;
+        }
+
+        .faq-question:hover {
+            color: #11db84;
+        }
+
+        /* Icon styling */
+        .faq-icon {
+            font-size: 0.8rem;
+            color: #64748b;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        /* Active State styles */
+        .faq-item.active {
+            border-color: #11db84;
+        }
+
+        .faq-item.active .faq-question {
+            color: #11db84;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+            color: #11db84;
+        }
+
+        /* Answer Section (Smooth Slide transition) */
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, padding 0.3s ease;
+            background-color: #0f1118;
+            color: #94a3b8;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .faq-answer-content {
+            padding: 0 20px 20px 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="faq-container">
+    <div class="faq-title-sub">_knowledge_base</div>
+    <div class="faq-title">frequently_<span>asked</span></div>
+
+    <div class="faq-wrapper">
+        <div class="faq-item">
+            <button class="faq-question">
+                <span>? How does the Anti-Nuke system protect my server?</span>
+                <span class="faq-icon">▼</span>
+            </button>
+            <div class="faq-answer">
+                <div class="faq-answer-content">
+                    Anti-Nuke system stops mass bans, kicks, channel deletions, and role creations instantly. It automatically demotes or bans the rogue user and rolls back the changes.
+                </div>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question">
+                <span>? What is the difference between Free and Premium tiers?</span>
+                <span class="faq-icon">▼</span>
+            </button>
+            <div class="faq-answer">
+                <div class="faq-answer-content">
+                    Premium unlocks advanced features like Vanity Role Systems, Lockrole Security, 320kbps Music quality, AutoNick system, and 24/7 online voice support.
+                </div>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question">
+                <span>? Is Vortyx safe to add to my server?</span>
+                <span class="faq-icon">▼</span>
+            </button>
+            <div class="faq-answer">
+                <div class="faq-answer-content">
+                    Yes, Vortyx is fully verified and uses official Discord APIs. We take security seriously and do not store sensitive user details.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // JavaScript to handle the toggle/accordion behavior
+    document.querySelectorAll('.faq-question').forEach(button => {
+        button.addEventListener('click', () => {
+            const faqItem = button.parentElement;
+            const answer = faqItem.querySelector('.faq-answer');
+
+            // Agar koi dusra FAQ pehle se open hai toh use close karein (Optional)
+            document.querySelectorAll('.faq-item').forEach(item => {
+                if (item !== faqItem && item.classList.contains('active')) {
+                    item.classList.remove('active');
+                    item.querySelector('.faq-answer').style.maxHeight = null;
+                }
+            });
+
+            // Is item ko toggle karein
+            faqItem.classList.toggle('active');
+
+            if (faqItem.classList.contains('active')) {
+                answer.style.maxHeight = answer.scrollHeight + "px";
+            } else {
+                answer.style.maxHeight = null;
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
+
