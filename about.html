@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us | Vortyx</title>
+    <!-- FontAwesome Icons for Premium Look -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* Reset and Base Theme */
         * {
@@ -14,24 +16,94 @@
 
         body {
             background-color: #060709;
-            /* Dot Grid Background Style */
-            background-image: radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 0);
+            /* Precise Dot Grid Background Style */
+            background-image: radial-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 0);
             background-size: 24px 24px;
             color: #a0aec0;
             font-family: 'Courier New', Courier, monospace;
-            padding: 60px 20px;
+            padding-top: 100px; /* Space for the fixed navbar */
+            padding-bottom: 60px;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
             min-height: 100vh;
         }
 
-        .about-container {
+        /* UPPER NAVIGATION BAR (PRECISE LINKS) */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
+            height: 60px;
+            background-color: rgba(6, 7, 9, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 40px;
+            z-index: 1000;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: #ffffff;
+            font-weight: bold;
+            font-size: 0.95rem;
+        }
+
+        .nav-logo img {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%; /* Rounded Logo in Nav Bar */
+            object-fit: cover;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #718096;
+            font-size: 0.8rem;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: #11db84;
+        }
+
+        .nav-links a.active {
+            border: 1px solid rgba(17, 219, 132, 0.3);
+            padding: 4px 10px;
+            border-radius: 20px;
+            background-color: rgba(17, 219, 132, 0.05);
+        }
+
+        .login-btn {
+            color: #ffffff !important;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* Container Layout */
+        .about-container {
+            width: 90%;
             max-width: 750px;
             display: flex;
             flex-direction: column;
             gap: 25px;
+            margin-top: 20px;
         }
 
         /* Tag Style */
@@ -39,8 +111,8 @@
             color: #11db84;
             font-size: 0.75rem;
             font-weight: bold;
-            background-color: rgba(17, 219, 132, 0.08);
-            border: 1px solid rgba(17, 219, 132, 0.2);
+            background-color: rgba(17, 219, 132, 0.05);
+            border: 1px solid rgba(17, 219, 132, 0.15);
             padding: 4px 10px;
             border-radius: 4px;
             align-self: flex-start;
@@ -58,7 +130,7 @@
 
         /* Paragraphs styling */
         .desc-text {
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             line-height: 1.6;
             color: #8892b0;
         }
@@ -75,29 +147,30 @@
             margin: 10px 0;
         }
 
-        /* Central Logo Section */
+        /* CENTRAL LOGO (PERFECTLY ROUNDED AVATAR) */
         .logo-wrapper {
             display: flex;
             justify-content: center;
             align-items: center;
-            margin: 30px 0;
+            margin: 35px 0;
         }
 
         .logo-circle {
-            width: 160px;
-            height: 160px;
+            width: 170px;
+            height: 170px;
             border-radius: 50%;
-            background: radial-gradient(circle, #0e1117 40%, #050608 100%);
-            border: 2px solid #1a202c;
+            background: radial-gradient(circle, #0c0f16 30%, #050609 100%);
+            border: 2px solid #161b26;
             display: flex;
             justify-content: center;
             align-items: center;
-            box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.7), 0 0 20px rgba(17, 219, 132, 0.03);
             position: relative;
             overflow: hidden;
+            animation: floatAnimation 4s ease-in-out infinite;
         }
 
-        /* Metallic reflection line effect from screenshot */
+        /* Metallic reflection bar effect */
         .logo-circle::after {
             content: '';
             position: absolute;
@@ -105,17 +178,21 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: linear-gradient(45deg, transparent 45%, rgba(255,255,255,0.08) 50%, transparent 55%);
+            background: linear-gradient(45deg, transparent 45%, rgba(255,255,255,0.06) 50%, transparent 55%);
             pointer-events: none;
+            animation: sheen 6s infinite linear;
         }
 
+        /* Fixed: Made the avatar image inside perfectly round and centered */
         .logo-circle img {
-            width: 65%;
-            height: 65%;
-            object-fit: contain;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%; /* Force image to be circular */
+            object-fit: cover; /* Prevents stretching */
+            filter: drop-shadow(0 0 12px rgba(17, 219, 132, 0.3));
         }
 
-        /* Grid Feature Cards Layout */
+        /* FEATURE CARDS & ANIMATIONS */
         .features-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -126,73 +203,119 @@
             .features-grid {
                 grid-template-columns: 1fr;
             }
+            .navbar { padding: 0 20px; }
+            .nav-links a:not(.login-btn) { display: none; }
         }
 
         .feature-card {
             background-color: #0e1117;
-            border: 1px solid #1a202c;
+            border: 1px solid #161b26;
             border-radius: 6px;
-            padding: 20px;
+            padding: 22px;
             display: flex;
             flex-direction: column;
-            gap: 8px;
+            gap: 10px;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-3px);
+            border-color: rgba(17, 219, 132, 0.4);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), 0 0 15px rgba(17, 219, 132, 0.05);
         }
 
         .card-header {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
             color: #ffffff;
             font-size: 0.95rem;
             font-weight: bold;
         }
 
-        /* Custom Icon Colors */
-        .icon-green { color: #11db84; }
-        .icon-blue { color: #38bdf8; }
+        /* Glowing Neon Color Icons */
+        .card-header i {
+            font-size: 1.05rem;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover .card-header i {
+            transform: scale(1.15);
+        }
+
+        .icon-green { color: #11db84; text-shadow: 0 0 10px rgba(17, 219, 132, 0.4); }
+        .icon-blue { color: #00bfff; text-shadow: 0 0 10px rgba(0, 191, 255, 0.4); }
 
         .card-desc {
-            color: #718096;
+            color: #64748b;
             font-size: 0.82rem;
             line-height: 1.5;
-            padding-left: 24px; /* Icon alignment ke liye padding */
+            padding-left: 26px;
+        }
+
+        /* FLOATING ANIMATIONS */
+        @keyframes floatAnimation {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-6px); }
+            100% { transform: translateY(0px); }
+        }
+
+        @keyframes sheen {
+            0% { transform: translate(-30%, -30%); }
+            100% { transform: translate(30%, 30%); }
         }
     </style>
 </head>
 <body>
 
+<!-- FIXED NAVIGATION HEADER SECTION (REAL LINKS) -->
+<nav class="navbar">
+    <a href="/" class="nav-logo">
+        <img src="https://cdn.discordapp.com/attachments/1525429007233847306/1525501317903290440/e1d6e686-9c79-4de9-9826-769c4eff3df9.png?ex=6a56e910&is=6a559790&hm=fe2b473c56edac9a1d069ba5f4f3cc811dfd1ede73b02d0664c277e7d675edca&" alt="Vortyx Logo">
+        Vortyx
+    </a>
+    <ul class="nav-links">
+        <li><a href="/features">Features</a></li>
+        <li><a href="/commands">Commands</a></li>
+        <li><a href="/dashboard">Dashboard</a></li>
+        <li><a href="/premium">Premium</a></li>
+        <li><a href="/about" class="active">About</a></li>
+        <li><a href="/faq">FAQ</a></li>
+        <li><a href="/team">Team</a></li>
+        <li><a href="/status">Status</a></li>
+        <li><a href="/login" class="login-btn"><i class="fa-solid fa-user" style="font-size: 0.75rem;"></i> Login</a></li>
+    </ul>
+</nav>
+
+<!-- MAIN CONTENT CONTAINER -->
 <div class="about-container">
     
-    <!-- Tagline -->
     <div class="badge-tag">_ABOUT_US</div>
 
-    <!-- Title -->
     <h1 class="main-heading">system_core_</h1>
 
-    <!-- Description Paragraphs -->
     <p class="desc-text">> Vortyx is an advanced Discord security bot trusted by thousands of servers worldwide.</p>
     <p class="desc-text">> We provide real-time protection, 395+ commands, and zero compromises.</p>
 
-    <!-- Quote Box -->
     <div class="quote-box">
         "Security is not a feature, it's a necessity."
     </div>
 
-    <!-- Logo Centerpiece -->
+    <!-- LOGO WITH PRECISE ROUND SHAPE -->
     <div class="logo-wrapper">
         <div class="logo-circle">
-            <!-- APNA LOGO PATH YAHA UPDATE KAREIN -->
-            <img src="vortyx-logo.png" alt="Vortyx Logo">
+            <img src="https://cdn.discordapp.com/attachments/1525429007233847306/1525501317903290440/e1d6e686-9c79-4de9-9826-769c4eff3df9.png?ex=6a56e910&is=6a559790&hm=fe2b473c56edac9a1d069ba5f4f3cc811dfd1ede73b02d0664c277e7d675edca&" alt="Vortyx Logo">
         </div>
     </div>
 
-    <!-- 2x2 Features Grid -->
+    <!-- ANIMATED GRID CARDS -->
     <div class="features-grid">
         
         <!-- Card 1 -->
         <div class="feature-card">
             <div class="card-header">
-                <span class="icon-green">✔</span> Anti-Nuke Protection
+                <i class="fa-solid fa-shield-halved icon-green"></i> Anti-Nuke Protection
             </div>
             <div class="card-desc">
                 Stops mass bans, kicks, and channel deletions instantly.
@@ -202,7 +325,7 @@
         <!-- Card 2 -->
         <div class="feature-card">
             <div class="card-header">
-                <span class="icon-green">👥</span> Smart Moderation
+                <i class="fa-solid fa-users-gear icon-green"></i> Smart Moderation
             </div>
             <div class="card-desc">
                 Automated spam detection and user management tools.
@@ -212,7 +335,7 @@
         <!-- Card 3 -->
         <div class="feature-card">
             <div class="card-header">
-                <span class="icon-green">🎵</span> High-Quality Music
+                <i class="fa-solid fa-music icon-green"></i> High-Quality Music
             </div>
             <div class="card-desc">
                 Crystal clear audio playback with playlist support.
@@ -222,7 +345,7 @@
         <!-- Card 4 -->
         <div class="feature-card">
             <div class="card-header">
-                <span class="icon-blue">⚡</span> Lightning Fast
+                <i class="fa-solid fa-bolt icon-blue"></i> Lightning Fast
             </div>
             <div class="card-desc">
                 Optimized speed with near-instant command responses.
