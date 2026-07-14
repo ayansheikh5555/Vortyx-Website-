@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vortyx — System Status</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        darkBg: '#08080c',
+                        darkCard: '#0f0f15',
+                        vortyxGreen: '#00ff66',
+                        vortyxMuted: '#64748b',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;600;800&family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap');
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #08080c; }
+        .code-font { font-family: 'JetBrains Mono', monospace; }
+    </style>
+</head>
+<body class="text-white selection:bg-vortyxGreen selection:text-black">
+
+    <header class="sticky top-0 z-50 backdrop-blur-md bg-darkBg/80 border-b border-white/5 py-4 px-6 md:px-12 flex justify-between items-center">
+        <a href="index.html" class="flex items-center gap-3">
+            <img src="https://cdn.discordapp.com/attachments/1525429007233847306/1525501317903290440/e1d6e686-9c79-4de9-9826-769c4eff3df9.png?ex=6a56e910&is=6a559790&hm=fe2b473c56edac9a1d069ba5f4f3cc811dfd1ede73b02d0664c277e7d675edca&" class="w-9 h-9 rounded-full border border-vortyxGreen/30" alt="Vortyx Avatar">
+            <span class="text-xl font-bold tracking-wide code-font">Vortyx<span class="text-vortyxGreen">_</span></span>
+        </a>
+        <nav class="hidden md:flex gap-6 text-sm text-gray-400 font-medium">
+            <a href="index.html" class="hover:text-white transition">Features</a>
+            <a href="commands.html" class="hover:text-white transition">Commands</a>
+            <a href="status.html" class="text-vortyxGreen border-b-2 border-vortyxGreen pb-1 px-1">Status</a>
+            <a href="premium.html" class="hover:text-white transition">Premium</a>
+            <a href="about.html" class="hover:text-white transition">About</a>
+        </nav>
+        <a href="https://discord.com/oauth2/authorize?client_id=1524664608768655441&permissions=8&integration_type=0&scope=bot+applications.commands" target="_blank" class="bg-vortyxGreen/10 border border-vortyxGreen text-vortyxGreen px-4 py-1.5 rounded-full text-xs font-semibold hover:bg-vortyxGreen hover:text-black transition">Login</a>
+    </header>
+
+    <section class="py-12 px-6 max-w-5xl mx-auto">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-4">
+            <div>
+                <h1 class="text-3xl font-extrabold code-font">System Status</h1>
+                <p class="text-xs text-vortyxMuted mt-1">Real-time performance metrics of Vortyx. Updated 8s ago</p>
+            </div>
+            <div class="flex gap-8">
+                <div>
+                    <div class="text-xs text-vortyxMuted code-font">GLOBAL LATENCY</div>
+                    <div class="text-2xl font-bold text-vortyxGreen code-font">18ms</div>
+                </div>
+                <div>
+                    <div class="text-xs text-vortyxMuted code-font">UPTIME</div>
+                    <div class="text-2xl font-bold text-white code-font">15h 20m</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+            <div class="bg-darkCard border border-white/5 p-5 rounded-xl">
+                <div class="text-xs text-vortyxMuted code-font mb-1"><i class="fa-solid fa-users mr-1.5"></i> USERS</div>
+                <div class="text-lg md:text-xl font-extrabold">10,785,402</div>
+            </div>
+            <div class="bg-darkCard border border-white/5 p-5 rounded-xl">
+                <div class="text-xs text-vortyxMuted code-font mb-1"><i class="fa-solid fa-server mr-1.5"></i> SERVERS</div>
+                <div class="text-lg md:text-xl font-extrabold">43,122</div>
+            </div>
+            <div class="bg-darkCard border border-white/5 p-5 rounded-xl">
+                <div class="text-xs text-vortyxMuted code-font mb-1"><i class="fa-solid fa-cubes mr-1.5"></i> CLUSTERS</div>
+                <div class="text-lg md:text-xl font-extrabold">5</div>
+            </div>
+            <div class="bg-darkCard border border-white/5 p-5 rounded-xl">
+                <div class="text-xs text-vortyxMuted code-font mb-1"><i class="fa-solid fa-microchip mr-1.5"></i> SHARDS</div>
+                <div class="text-lg md:text-xl font-extrabold">43</div>
+            </div>
+        </div>
+
+        <div class="bg-darkCard border border-white/5 p-6 rounded-xl mb-8">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-sm font-bold code-font"><i class="fa-solid fa-chart-line text-vortyxGreen mr-2"></i> Latency History</h3>
+                <span class="text-xs text-vortyxMuted">Avg: 52ms / Peak: 2.5s</span>
+            </div>
+            <canvas id="latencyChart" class="w-full max-h-[180px]"></canvas>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div class="bg-darkCard border border-white/5 p-4 rounded-xl flex justify-between items-center">
+                <div>
+                    <p class="text-sm font-bold">Discord Gateway</p>
+                    <p class="text-xs text-vortyxMuted">Latency: 18ms</p>
+                </div>
+                <span class="w-2.5 h-2.5 rounded-full bg-vortyxGreen animate-ping"></span>
+            </div>
+            <div class="bg-darkCard border border-white/5 p-4 rounded-xl flex justify-between items-center">
+                <div>
+                    <p class="text-sm font-bold">PostgreSQL Database</p>
+                    <p class="text-xs text-vortyxMuted">Uptime: 100%</p>
+                </div>
+                <span class="w-2.5 h-2.5 rounded-full bg-vortyxGreen"></span>
+            </div>
+            <div class="bg-darkCard border border-white/5 p-4 rounded-xl flex justify-between items-center">
+                <div>
+                    <p class="text-sm font-bold">Web Dashboard</p>
+                    <p class="text-xs text-vortyxMuted">Latency: 97ms</p>
+                </div>
+                <span class="w-2.5 h-2.5 rounded-full bg-vortyxGreen"></span>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Performance chart initialization
+        const ctx = document.getElementById('latencyChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['22:00', '22:15', '22:30', '22:45', '23:00'],
+                datasets: [{
+                    label: 'Shard Latency (ms)',
+                    data: [18, 19.5, 17.3, 18.6, 15.3],
+                    borderColor: '#00ff66',
+                    borderWidth: 2,
+                    fill: true,
+                    backgroundColor: 'rgba(0, 255, 102, 0.03)',
+                    tension: 0.3
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#64748b' } },
+                    x: { grid: { display: false }, ticks: { color: '#64748b' } }
+                },
+                plugins: { legend: { display: false } }
+            }
+        });
+    </script>
+</body>
+</html>
+a
