@@ -3,71 +3,235 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vortyx — About Us</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        darkBg: '#08080c',
-                        darkCard: '#0f0f15',
-                        vortyxGreen: '#00ff66',
-                        vortyxMuted: '#64748b',
-                    }
-                }
+    <title>About Us | Vortyx</title>
+    <style>
+        /* Reset and Base Theme */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #060709;
+            /* Dot Grid Background Style */
+            background-image: radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 0);
+            background-size: 24px 24px;
+            color: #a0aec0;
+            font-family: 'Courier New', Courier, monospace;
+            padding: 60px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .about-container {
+            width: 100%;
+            max-width: 750px;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        /* Tag Style */
+        .badge-tag {
+            color: #11db84;
+            font-size: 0.75rem;
+            font-weight: bold;
+            background-color: rgba(17, 219, 132, 0.08);
+            border: 1px solid rgba(17, 219, 132, 0.2);
+            padding: 4px 10px;
+            border-radius: 4px;
+            align-self: flex-start;
+            letter-spacing: 1px;
+        }
+
+        /* Main Heading */
+        .main-heading {
+            color: #ffffff;
+            font-size: 2.5rem;
+            font-weight: bold;
+            letter-spacing: -1px;
+            margin-bottom: 5px;
+        }
+
+        /* Paragraphs styling */
+        .desc-text {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #8892b0;
+        }
+
+        /* Quote Callout Box */
+        .quote-box {
+            background-color: #0e1117;
+            border-left: 3px solid #11db84;
+            padding: 15px 20px;
+            border-radius: 0 6px 6px 0;
+            font-style: italic;
+            color: #e2e8f0;
+            font-size: 0.9rem;
+            margin: 10px 0;
+        }
+
+        /* Central Logo Section */
+        .logo-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 30px 0;
+        }
+
+        .logo-circle {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #0e1117 40%, #050608 100%);
+            border: 2px solid #1a202c;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Metallic reflection line effect from screenshot */
+        .logo-circle::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent 45%, rgba(255,255,255,0.08) 50%, transparent 55%);
+            pointer-events: none;
+        }
+
+        .logo-circle img {
+            width: 65%;
+            height: 65%;
+            object-fit: contain;
+        }
+
+        /* Grid Feature Cards Layout */
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        @media (max-width: 600px) {
+            .features-grid {
+                grid-template-columns: 1fr;
             }
         }
-    </script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;600;800&family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap');
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #08080c; }
-        .code-font { font-family: 'JetBrains Mono', monospace; }
+
+        .feature-card {
+            background-color: #0e1117;
+            border: 1px solid #1a202c;
+            border-radius: 6px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #ffffff;
+            font-size: 0.95rem;
+            font-weight: bold;
+        }
+
+        /* Custom Icon Colors */
+        .icon-green { color: #11db84; }
+        .icon-blue { color: #38bdf8; }
+
+        .card-desc {
+            color: #718096;
+            font-size: 0.82rem;
+            line-height: 1.5;
+            padding-left: 24px; /* Icon alignment ke liye padding */
+        }
     </style>
 </head>
-<body class="text-white selection:bg-vortyxGreen selection:text-black">
+<body>
 
-    <header class="sticky top-0 z-50 backdrop-blur-md bg-darkBg/80 border-b border-white/5 py-4 px-6 md:px-12 flex justify-between items-center">
-        <a href="index.html" class="flex items-center gap-3">
-            <img src="https://cdn.discordapp.com/attachments/1525429007233847306/1525501317903290440/e1d6e686-9c79-4de9-9826-769c4eff3df9.png?ex=6a56e910&is=6a559790&hm=fe2b473c56edac9a1d069ba5f4f3cc811dfd1ede73b02d0664c277e7d675edca&" class="w-9 h-9 rounded-full border border-vortyxGreen/30" alt="Vortyx Avatar">
-            <span class="text-xl font-bold tracking-wide code-font">Vortyx<span class="text-vortyxGreen">_</span></span>
-        </a>
-        <nav class="hidden md:flex gap-6 text-sm text-gray-400 font-medium">
-            <a href="index.html" class="hover:text-white transition">Features</a>
-            <a href="commands.html" class="hover:text-white transition">Commands</a>
-            <a href="status.html" class="hover:text-white transition">Status</a>
-            <a href="premium.html" class="hover:text-white transition">Premium</a>
-            <a href="about.html" class="text-vortyxGreen border-b-2 border-vortyxGreen pb-1 px-1">About</a>
-        </nav>
-        <a href="https://discord.com/oauth2/authorize?client_id=1524664608768655441&permissions=8&integration_type=0&scope=bot+applications.commands" target="_blank" class="bg-vortyxGreen/10 border border-vortyxGreen text-vortyxGreen px-4 py-1.5 rounded-full text-xs font-semibold hover:bg-vortyxGreen hover:text-black transition">Login</a>
-    </header>
+<div class="about-container">
+    
+    <!-- Tagline -->
+    <div class="badge-tag">_ABOUT_US</div>
 
-    <section class="py-20 px-6 max-w-4xl mx-auto text-center flex flex-col items-center">
-        <span class="text-xs code-font text-vortyxGreen bg-vortyxGreen/5 border border-vortyxGreen/10 px-3 py-1 rounded-full mb-6">_ABOUT_US</span>
-        <h1 class="text-4xl font-extrabold code-font mb-4">system_core<span class="text-vortyxGreen">_</span></h1>
+    <!-- Title -->
+    <h1 class="main-heading">system_core_</h1>
+
+    <!-- Description Paragraphs -->
+    <p class="desc-text">> Vortyx is an advanced Discord security bot trusted by thousands of servers worldwide.</p>
+    <p class="desc-text">> We provide real-time protection, 395+ commands, and zero compromises.</p>
+
+    <!-- Quote Box -->
+    <div class="quote-box">
+        "Security is not a feature, it's a necessity."
+    </div>
+
+    <!-- Logo Centerpiece -->
+    <div class="logo-wrapper">
+        <div class="logo-circle">
+            <!-- APNA LOGO PATH YAHA UPDATE KAREIN -->
+            <img src="vortyx-logo.png" alt="Vortyx Logo">
+        </div>
+    </div>
+
+    <!-- 2x2 Features Grid -->
+    <div class="features-grid">
         
-        <blockquote class="border-l-4 border-vortyxGreen bg-white/5 p-4 my-6 text-sm text-gray-300 rounded-r-xl italic max-w-2xl text-left">
-            "Security is not a feature, it's an essential necessity for community survival."
-        </blockquote>
-
-        <p class="text-gray-400 text-sm md:text-base leading-relaxed max-w-2xl text-center mb-12">
-            Vortyx is built by security experts to stop server nukes, illegal integrations, and unwanted spam triggers immediately. We provide real-time status networks and deep guild statistics reporting.
-        </p>
-
-        <div class="grid grid-cols-2 gap-4 w-full max-w-2xl">
-            <div class="bg-darkCard border border-white/5 p-5 rounded-xl text-left">
-                <i class="fa-solid fa-shield-halved text-vortyxGreen mb-2"></i>
-                <h4 class="font-bold text-sm">Anti-Nuke Systems</h4>
-                <p class="text-xs text-vortyxMuted">Instantly rolls back mass deletions.</p>
+        <!-- Card 1 -->
+        <div class="feature-card">
+            <div class="card-header">
+                <span class="icon-green">✔</span> Anti-Nuke Protection
             </div>
-            <div class="bg-darkCard border border-white/5 p-5 rounded-xl text-left">
-                <i class="fa-solid fa-bolt text-vortyxGreen mb-2"></i>
-                <h4 class="font-bold text-sm">Lightning Fast</h4>
-                <p class="text-xs text-vortyxMuted">Under 20ms global cluster latency execution.</p>
+            <div class="card-desc">
+                Stops mass bans, kicks, and channel deletions instantly.
             </div>
         </div>
-    </section>
+
+        <!-- Card 2 -->
+        <div class="feature-card">
+            <div class="card-header">
+                <span class="icon-green">👥</span> Smart Moderation
+            </div>
+            <div class="card-desc">
+                Automated spam detection and user management tools.
+            </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="feature-card">
+            <div class="card-header">
+                <span class="icon-green">🎵</span> High-Quality Music
+            </div>
+            <div class="card-desc">
+                Crystal clear audio playback with playlist support.
+            </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="feature-card">
+            <div class="card-header">
+                <span class="icon-blue">⚡</span> Lightning Fast
+            </div>
+            <div class="card-desc">
+                Optimized speed with near-instant command responses.
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
 </body>
 </html>
-
