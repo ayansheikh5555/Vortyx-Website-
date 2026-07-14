@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us | Vortyx</title>
+    <!-- FontAwesome Icons for Premium Look -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* Reset and Base Theme */
@@ -28,7 +29,7 @@
             min-height: 100vh;
         }
 
-        /* NAVIGATION HEADER SECTION (DIRECT HTML FILE LINKS) */
+        /* FIXED NAVIGATION HEADER SECTION (CENTERED) */
         .navbar {
             position: fixed;
             top: 0;
@@ -54,18 +55,28 @@
             color: #ffffff;
             font-weight: bold;
             font-size: 0.95rem;
+            flex-shrink: 0;
         }
 
         .nav-logo img {
             width: 24px;
             height: 24px;
-            border-radius: 50%; /* Rounded Logo in Nav Bar */
+            border-radius: 50%;
             object-fit: cover;
+        }
+
+        /* Centered Menu Wrapper */
+        .nav-menu-wrapper {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
         }
 
         .nav-links {
             display: flex;
-            gap: 20px;
+            gap: 24px;
             list-style: none;
             align-items: center;
         }
@@ -88,8 +99,16 @@
             background-color: rgba(17, 219, 132, 0.05);
         }
 
+        /* Right Side Button Wrapper */
+        .nav-right {
+            display: flex;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
         /* Active Green Glow Effect on Login Button */
         .login-btn {
+            text-decoration: none;
             color: #ffffff !important;
             display: flex;
             align-items: center;
@@ -98,6 +117,7 @@
             padding: 6px 12px !important;
             border-radius: 4px;
             background-color: rgba(17, 219, 132, 0.05);
+            font-size: 0.8rem;
             transition: all 0.3s ease !important;
         }
 
@@ -202,8 +222,8 @@
         .logo-circle img {
             width: 100%;
             height: 100%;
-            border-radius: 50%; /* Force image to be circular */
-            object-fit: cover; /* Prevents stretching */
+            border-radius: 50%;
+            object-fit: cover;
             filter: drop-shadow(0 0 12px rgba(17, 219, 132, 0.3));
         }
 
@@ -214,12 +234,15 @@
             gap: 16px;
         }
 
+        @media (max-width: 768px) {
+            .navbar { padding: 0 20px; }
+            .nav-menu-wrapper { display: none; } /* Mobile optimization */
+        }
+
         @media (max-width: 600px) {
             .features-grid {
                 grid-template-columns: 1fr;
             }
-            .navbar { padding: 0 20px; }
-            .nav-links a:not(.login-btn) { display: none; }
         }
 
         .feature-card {
@@ -249,7 +272,6 @@
             font-weight: bold;
         }
 
-        /* Glowing Neon Color Icons */
         .card-header i {
             font-size: 1.05rem;
             transition: transform 0.3s ease;
@@ -281,7 +303,6 @@
             100% { transform: translate(30%, 30%); }
         }
 
-        /* 1s on, 1s off blink cursor animation */
         @keyframes terminalBlink {
             to { visibility: hidden; }
         }
@@ -289,26 +310,35 @@
 </head>
 <body>
 
+<!-- FIXED NAVIGATION HEADER SECTION (CENTERED) -->
 <nav class="navbar">
     <a href="index.html" class="nav-logo">
         <img src="https://cdn.discordapp.com/attachments/1525429007233847306/1525501317903290440/e1d6e686-9c79-4de9-9826-769c4eff3df9.png?ex=6a56e910&is=6a559790&hm=fe2b473c56edac9a1d069ba5f4f3cc811dfd1ede73b02d0664c277e7d675edca&" alt="Vortyx Logo">
         Vortyx
     </a>
-    <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="command.html">Commands</a></li>
-        <li><a href="primium.html">Premium</a></li>
-        <li><a href="about.html" class="active">About</a></li>
-        <li><a href="faq.html">FAQ</a></li>
-        <li><a href="status.html">Status</a></li>
-        <li><a href="https://discord.com/oauth2/authorize?client_id=YOUR_CLIENT_ID" class="login-btn" target="_blank"><i class="fa-brands fa-discord"></i> Login</a></li>
-    </ul>
+    
+    <div class="nav-menu-wrapper">
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="commands.html">Commands</a></li>
+            <li><a href="status.html">Status</a></li>
+            <li><a href="premium.html">Premium</a></li>
+            <li><a href="about.html" class="active">About</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+        </ul>
+    </div>
+
+    <div class="nav-right">
+        <a href="https://discord.com/oauth2/authorize?client_id=YOUR_CLIENT_ID" class="login-btn" target="_blank"><i class="fa-brands fa-discord"></i> Login</a>
+    </div>
 </nav>
 
+<!-- MAIN CONTENT CONTAINER -->
 <div class="about-container">
     
     <div class="badge-tag">_ABOUT_US</div>
 
+    <!-- MAIN TITLE WITH BLINKING UNDERSCORE -->
     <h1 class="main-heading">system_core<span class="blinking-cursor">_</span></h1>
 
     <p class="desc-text">> Vortyx is an advanced Discord security bot trusted by thousands of servers worldwide.</p>
@@ -318,14 +348,17 @@
         "Security is not a feature, it's a necessity."
     </div>
 
+    <!-- LOGO WITH PRECISE ROUND SHAPE -->
     <div class="logo-wrapper">
         <div class="logo-circle">
             <img src="https://cdn.discordapp.com/attachments/1525429007233847306/1525501317903290440/e1d6e686-9c79-4de9-9826-769c4eff3df9.png?ex=6a56e910&is=6a559790&hm=fe2b473c56edac9a1d069ba5f4f3cc811dfd1ede73b02d0664c277e7d675edca&" alt="Vortyx Logo">
         </div>
     </div>
 
+    <!-- ANIMATED GRID CARDS -->
     <div class="features-grid">
         
+        <!-- Card 1 -->
         <div class="feature-card">
             <div class="card-header">
                 <i class="fa-solid fa-shield-halved icon-green"></i> Anti-Nuke Protection
@@ -335,6 +368,7 @@
             </div>
         </div>
 
+        <!-- Card 2 -->
         <div class="feature-card">
             <div class="card-header">
                 <i class="fa-solid fa-users-gear icon-green"></i> Smart Moderation
@@ -344,6 +378,7 @@
             </div>
         </div>
 
+        <!-- Card 3 -->
         <div class="feature-card">
             <div class="card-header">
                 <i class="fa-solid fa-music icon-green"></i> High-Quality Music
@@ -353,6 +388,7 @@
             </div>
         </div>
 
+        <!-- Card 4 -->
         <div class="feature-card">
             <div class="card-header">
                 <i class="fa-solid fa-bolt icon-blue"></i> Lightning Fast
