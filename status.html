@@ -16,6 +16,7 @@
                         darkCard: '#0e1117',
                         vortyxGreen: '#11db84',
                         vortyxMuted: '#64748b',
+                        chartBlue: '#3b82f6',
                         chartPurple: '#8855ff',
                     }
                 }
@@ -35,7 +36,6 @@
 </head>
 <body class="text-white selection:bg-vortyxGreen selection:text-black">
 
-    <!-- FIXED NAVIGATION HEADER -->
     <header class="fixed top-0 left-0 w-full z-50 backdrop-blur-md bg-darkBg/75 border-b border-white/5 py-4 px-6 md:px-12 flex justify-between items-center">
         <a href="index.html" class="flex items-center gap-2">
             <img src="https://cdn.discordapp.com/attachments/1468117511223644171/1526473821861711942/logo.png?ex=6a572707&is=6a55d587&hm=3416e4d1fd75ea0a2238e6600f846e381d2319320efc0fdf41f101d2e79a8be6&" class="w-7 h-7 rounded-full object-cover" alt="Vortyx Avatar">
@@ -54,7 +54,6 @@
         </a>
     </header>
 
-    <!-- STATUS CONTENT SECTION -->
     <section class="pt-28 pb-16 px-6 max-w-4xl mx-auto">
         <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-4">
             <div>
@@ -73,7 +72,6 @@
             </div>
         </div>
 
-        <!-- METRICS ROW -->
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
             <div class="bg-darkCard/50 border border-white/5 p-5 rounded-md">
                 <div class="text-[0.65rem] text-vortyxMuted mb-1"><i class="fa-solid fa-users mr-1.5 text-vortyxGreen"></i> USERS</div>
@@ -93,12 +91,43 @@
             </div>
         </div>
 
-        <!-- COMMAND ACTIVITY BLOCK CLONED FROM SCREENSHOT -->
+        <div class="mb-8">
+            <h2 class="text-sm font-bold mb-3 tracking-wide text-gray-200">Latency History</h2>
+            <div class="bg-darkCard/60 border border-white/5 p-5 rounded-lg shadow-2xl">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+                    <div class="flex items-start gap-3">
+                        <div class="bg-chartBlue/10 border border-chartBlue/20 p-2.5 rounded-md text-chartBlue flex items-center justify-center">
+                            <i class="fa-solid fa-chart-line text-xs"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xs font-bold text-gray-100 sans-font">Latency History</h3>
+                            <p class="text-[0.65rem] text-gray-500 sans-font">Average shard latency &bull; last 24 hours &bull; 10-minute interval</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-6 self-end md:self-auto">
+                        <div class="text-center">
+                            <div class="text-[0.55rem] text-gray-500 uppercase tracking-wider font-semibold sans-font">NOW</div>
+                            <div class="text-sm font-bold text-chartBlue">19.04ms</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-[0.55rem] text-gray-500 uppercase tracking-wider font-semibold sans-font">AVG</div>
+                            <div class="text-sm font-bold text-gray-200">52ms</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-[0.55rem] text-gray-500 uppercase tracking-wider font-semibold sans-font">PEAK</div>
+                            <div class="text-sm font-bold text-[#f59e0b]">2.5s</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full">
+                    <canvas id="latencyHistoryChart" class="w-full max-h-[160px]"></canvas>
+                </div>
+            </div>
+        </div>
+
         <div class="mb-8">
             <h2 class="text-sm font-bold mb-3 tracking-wide text-gray-200">Command Activity</h2>
-            
             <div class="bg-darkCard/60 border border-white/5 p-5 rounded-lg shadow-2xl">
-                <!-- Inner Header Info -->
                 <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
                     <div class="flex items-start gap-3">
                         <div class="bg-chartPurple/10 border border-chartPurple/20 p-2.5 rounded-md text-chartPurple flex items-center justify-center">
@@ -109,7 +138,6 @@
                             <p class="text-[0.65rem] text-gray-500 sans-font">Invocations per window &bull; last 24 hours &bull; 2-minute interval</p>
                         </div>
                     </div>
-                    <!-- Right Metrics -->
                     <div class="flex gap-6 self-end md:self-auto">
                         <div class="text-center">
                             <div class="text-[0.55rem] text-gray-500 uppercase tracking-wider font-semibold sans-font">NOW</div>
@@ -125,15 +153,12 @@
                         </div>
                     </div>
                 </div>
-                
-                <!-- Chart Container -->
                 <div class="w-full">
                     <canvas id="commandActivityChart" class="w-full max-h-[160px]"></canvas>
                 </div>
             </div>
         </div>
 
-        <!-- GATEWAY DEPLOYMENTS STATUS -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div class="bg-darkCard/40 border border-white/5 p-4 rounded-md flex justify-between items-center">
                 <div>
@@ -160,34 +185,76 @@
     </section>
 
     <script>
-        // Command Activity chart matching the visual footprint of the screenshot
-        const ctx = document.getElementById('commandActivityChart').getContext('2d');
-        
-        // Mock dataset mimicking the high density bars from the screenshot
-        const activityLabels = Array.from({length: 48}, (_, i) => {
+        // Shared dynamic timeframe array
+        const generateTimelineLabels = (count) => Array.from({length: count}, (_, i) => {
             const hour = Math.floor(i / 2).toString().padStart(2, '0');
             const min = (i % 2 === 0 ? '00' : '30');
             return `${hour}:${min}`;
         });
-        
-        // High density visual data mimicry
+
+        // 1. LATENCY HISTORY CHART
+        const ctxLatency = document.getElementById('latencyHistoryChart').getContext('2d');
+        const latencyData = Array(50).fill(40).map((v, i) => {
+            if(i === 15) return 2300; // Spike 1
+            if(i === 32) return 1500; // Spike 2
+            if(i === 42) return 600;  // Spike 3
+            return v + Math.floor(Math.random() * 20);
+        });
+
+        new Chart(ctxLatency, {
+            type: 'line',
+            data: {
+                labels: generateTimelineLabels(50),
+                datasets: [{
+                    data: latencyData,
+                    borderColor: '#3b82f6',
+                    borderWidth: 1.5,
+                    fill: false,
+                    tension: 0.1,
+                    pointRadius: (ctx) => ctx.dataIndex === ctx.dataset.data.length - 1 ? 4 : 0,
+                    pointBackgroundColor: '#3b82f6'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        min: 0, max: 2500,
+                        grid: { color: 'rgba(255, 255, 255, 0.02)' },
+                        ticks: {
+                            color: '#4a5568', font: { family: 'JetBrains Mono', size: 9 },
+                            callback: (val) => val === 2500 ? '2.5s' : val === 1900 ? '1.9s' : val === 1300 ? '1.3s' : val === 628 ? '628ms' : val === 0 ? '0ms' : ''
+                        },
+                        border: { display: false }
+                    },
+                    x: {
+                        grid: { display: false },
+                        ticks: { color: '#4a5568', font: { family: 'JetBrains Mono', size: 9 }, maxTicksLimit: 5 },
+                        border: { display: false }
+                    }
+                },
+                plugins: { legend: { display: false } }
+            }
+        });
+
+        // 2. COMMAND ACTIVITY CHART
+        const ctxActivity = document.getElementById('commandActivityChart').getContext('2d');
         const activityData = [
             12, 15, 8, 20, 24, 18, 28, 14, 22, 16, 29, 34, 10, 8, 12, 14, 11, 4, 
             9, 5, 8, 10, 11, 7, 13, 9, 12, 8, 14, 17, 12, 21, 15, 18, 19, 14, 
             25, 20, 16, 27, 22, 31, 24, 43, 26, 32, 49, 18
         ];
 
-        new Chart(ctx, {
+        new Chart(ctxActivity, {
             type: 'line',
             data: {
-                labels: activityLabels,
+                labels: generateTimelineLabels(48),
                 datasets: [{
-                    label: 'Command Usage',
                     data: activityData,
                     borderColor: '#8855ff',
                     borderWidth: 1.5,
                     fill: true,
-                    // Linear gradient for purple fill
                     backgroundColor: function(context) {
                         const chart = context.chart;
                         const {ctx, chartArea} = chart;
@@ -198,8 +265,7 @@
                         return gradient;
                     },
                     tension: 0.2,
-                    pointRadius: 0,
-                    pointHoverRadius: 3
+                    pointRadius: 0
                 }]
             },
             options: {
@@ -207,58 +273,21 @@
                 maintainAspectRatio: false,
                 scales: {
                     y: { 
-                        min: 0,
-                        max: 49,
-                        grid: { 
-                            color: 'rgba(255, 255, 255, 0.02)' 
-                        }, 
-                        ticks: { 
-                            color: '#4a5568',
-                            font: {
-                                family: 'JetBrains Mono',
-                                size: 9
-                            },
-                            stepSize: 12
-                        },
-                        border: {
-                            display: false
-                        }
+                        min: 0, max: 49,
+                        grid: { color: 'rgba(255, 255, 255, 0.02)' }, 
+                        ticks: { color: '#4a5568', font: { family: 'JetBrains Mono', size: 9 }, stepSize: 12 },
+                        border: { display: false }
                     },
                     x: { 
-                        grid: { 
-                            display: false 
-                        }, 
-                        ticks: { 
-                            color: '#4a5568',
-                            font: {
-                                family: 'JetBrains Mono',
-                                size: 9
-                            },
-                            // Limit labels strictly to prevent crowding
-                            maxTicksLimit: 5
-                        },
-                        border: {
-                            display: false
-                        }
+                        grid: { display: false }, 
+                        ticks: { color: '#4a5568', font: { family: 'JetBrains Mono', size: 9 }, maxTicksLimit: 5 },
+                        border: { display: false }
                     }
                 },
-                plugins: { 
-                    legend: { 
-                        display: false 
-                    },
-                    tooltip: {
-                        enabled: true,
-                        backgroundColor: '#0c0d12',
-                        borderColor: '#161b26',
-                        borderWidth: 1,
-                        titleColor: '#8855ff',
-                        titleFont: { family: 'JetBrains Mono', size: 11 },
-                        bodyFont: { family: 'Plus Jakarta Sans', size: 11 },
-                        displayColors: false
-                    }
-                }
+                plugins: { legend: { display: false } }
             }
         });
     </script>
 </body>
-</html>
+                                </html>
+    
