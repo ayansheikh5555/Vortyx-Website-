@@ -3,66 +3,196 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FAQ Section</title>
+    <title>FAQ | Vortyx</title>
+    <!-- FontAwesome Icons for Premium Look -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Base Styling (Apni website ke main CSS me adjust kar sakte hain) */
-        body {
-            background-color: #0b0c10;
-            color: #c5c6c7;
-            font-family: 'Courier New', Courier, monospace; /* Terminal style font */
+        /* Reset and Base Theme */
+        * {
             margin: 0;
-            padding: 40px 20px;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #060709;
+            /* Precise Dot Grid Background Style */
+            background-image: radial-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 0);
+            background-size: 24px 24px;
+            color: #a0aec0;
+            font-family: 'Courier New', Courier, monospace;
+            padding-top: 100px; /* Space for the fixed navbar */
+            padding-bottom: 60px;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
         }
 
-        .faq-container {
+        /* FIXED NAVIGATION HEADER SECTION (CENTERED) */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
-            max-width: 800px;
+            height: 60px;
+            background-color: rgba(6, 7, 9, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 40px;
+            z-index: 1000;
         }
 
-        .faq-title-sub {
-            color: #1f2833;
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: #ffffff;
+            font-weight: bold;
+            font-size: 0.95rem;
+            flex-shrink: 0;
+        }
+
+        .nav-logo img {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        /* Centered Menu Wrapper */
+        .nav-menu-wrapper {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 24px;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #718096;
             font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            text-align: center;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: #11db84;
+        }
+
+        .nav-links a.active {
+            border: 1px solid rgba(17, 219, 132, 0.3);
+            padding: 4px 10px;
+            border-radius: 20px;
+            background-color: rgba(17, 219, 132, 0.05);
+        }
+
+        /* Right Side Button Wrapper */
+        .nav-right {
+            display: flex;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
+        /* Active Green Glow Effect on Login Button */
+        .login-btn {
+            text-decoration: none;
+            color: #ffffff !important;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            border: 1px solid rgba(17, 219, 132, 0.4) !important;
+            padding: 6px 12px !important;
+            border-radius: 4px;
+            background-color: rgba(17, 219, 132, 0.05);
+            font-size: 0.8rem;
+            transition: all 0.3s ease !important;
+        }
+
+        .login-btn:hover {
+            background-color: #11db84 !important;
+            color: #060709 !important;
+            box-shadow: 0 0 15px rgba(17, 219, 132, 0.4);
+        }
+
+        /* Container Layout */
+        .faq-container {
+            width: 90%;
+            max-width: 750px;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        /* Tag Style */
+        .badge-tag {
+            color: #11db84;
+            font-size: 0.75rem;
+            font-weight: bold;
+            background-color: rgba(17, 219, 132, 0.05);
+            border: 1px solid rgba(17, 219, 132, 0.15);
+            padding: 4px 10px;
+            border-radius: 4px;
+            align-self: flex-start;
+            letter-spacing: 1px;
+        }
+
+        /* Main Heading & Blinking Cursor CSS */
+        .main-heading {
+            color: #ffffff;
+            font-size: 2.5rem;
+            font-weight: bold;
+            letter-spacing: -1px;
             margin-bottom: 5px;
         }
 
-        .faq-title {
-            color: #ffffff;
-            font-size: 2rem;
-            text-align: center;
-            margin-bottom: 30px;
-            font-weight: bold;
+        .blinking-cursor {
+            color: #11db84;
+            animation: terminalBlink 1s infinite steps(2, start);
         }
 
-        .faq-title span {
-            color: #11db84; /* Krypton style green accent */
+        /* Paragraphs styling */
+        .desc-text {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: #8892b0;
         }
 
-        /* Accordion Wrapper */
+        /* -------------------------------------------
+           FAQ ACCORDION SPECIFIC STYLES
+        ------------------------------------------- */
         .faq-wrapper {
             display: flex;
             flex-direction: column;
             gap: 12px;
+            margin-top: 15px;
         }
 
-        /* Individual FAQ Item */
         .faq-item {
-            background-color: #12141c; /* Dark card background */
-            border: 1px solid #1f242e;
+            background-color: #0e1117;
+            border: 1px solid #161b26;
             border-radius: 6px;
             overflow: hidden;
             transition: all 0.3s ease;
         }
 
         .faq-item:hover {
-            border-color: #11db84; /* Hover par green border */
+            border-color: #11db84;
         }
 
-        /* Question Button */
         .faq-question {
             width: 100%;
             background: none;
@@ -85,14 +215,12 @@
             color: #11db84;
         }
 
-        /* Icon styling */
         .faq-icon {
             font-size: 0.8rem;
             color: #64748b;
             transition: transform 0.3s ease, color 0.3s ease;
         }
 
-        /* Active State styles */
         .faq-item.active {
             border-color: #11db84;
         }
@@ -106,29 +234,69 @@
             color: #11db84;
         }
 
-        /* Answer Section (Smooth Slide transition) */
         .faq-answer {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.3s ease-out, padding 0.3s ease;
-            background-color: #0f1118;
+            transition: max-height 0.3s ease-out;
+            background-color: #0b0c10;
             color: #94a3b8;
             font-size: 0.9rem;
             line-height: 1.6;
         }
 
         .faq-answer-content {
-            padding: 0 20px 20px 20px;
+            padding: 20px;
+            border-top: 1px solid rgba(255,255,255,0.02);
+        }
+
+        @media (max-width: 768px) {
+            .navbar { padding: 0 20px; }
+            .nav-menu-wrapper { display: none; }
+        }
+
+        /* ANIMATION KEYFRAMES */
+        @keyframes terminalBlink {
+            to { visibility: hidden; }
         }
     </style>
 </head>
 <body>
 
-<div class="faq-container">
-    <div class="faq-title-sub">_knowledge_base</div>
-    <div class="faq-title">frequently_<span>asked</span></div>
+<!-- FIXED NAVIGATION HEADER SECTION (CENTERED) -->
+<nav class="navbar">
+    <a href="index.html" class="nav-logo">
+        <img src="logo.png" alt="Vortyx Logo">
+        Vortyx
+    </a>
+    
+    <div class="nav-menu-wrapper">
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="commands.html">Commands</a></li>
+            <li><a href="status.html">Status</a></li>
+            <li><a href="premium.html">Premium</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="faq.html" class="active">FAQ</a></li>
+        </ul>
+    </div>
 
+    <div class="nav-right">
+        <a href="https://discord.com/oauth2/authorize?client_id=YOUR_CLIENT_ID" class="login-btn" target="_blank"><i class="fa-brands fa-discord"></i> Login</a>
+    </div>
+</nav>
+
+<!-- MAIN FAQ CONTAINER -->
+<div class="faq-container">
+    
+    <div class="badge-tag">_KNOWLEDGE_BASE</div>
+
+    <h1 class="main-heading">frequently_asked<span class="blinking-cursor">_</span></h1>
+
+    <p class="desc-text">> Get instant answers regarding Vortyx setup, module permissions, and dashboard settings below.</p>
+
+    <!-- FAQ Wrapper -->
     <div class="faq-wrapper">
+        <!-- FAQ Item 1 -->
         <div class="faq-item">
             <button class="faq-question">
                 <span>? How does the Anti-Nuke system protect my server?</span>
@@ -136,45 +304,48 @@
             </button>
             <div class="faq-answer">
                 <div class="faq-answer-content">
-                    Anti-Nuke system stops mass bans, kicks, channel deletions, and role creations instantly. It automatically demotes or bans the rogue user and rolls back the changes.
+                    Vortyx's Anti-Nuke system intercepts actions like rapid channel deletions, role changes, and mass kicks/bans. It instantly revokes permissions from the suspect user and restores the damaged channels or roles automatically.
                 </div>
             </div>
         </div>
 
+        <!-- FAQ Item 2 -->
         <div class="faq-item">
             <button class="faq-question">
-                <span>? What is the difference between Free and Premium tiers?</span>
+                <span>? What is the difference between Free and Premium?</span>
                 <span class="faq-icon">▼</span>
             </button>
             <div class="faq-answer">
                 <div class="faq-answer-content">
-                    Premium unlocks advanced features like Vanity Role Systems, Lockrole Security, 320kbps Music quality, AutoNick system, and 24/7 online voice support.
+                    While our Core security features are free, Premium unlocks advanced custom command creations, custom vanity role structures, full 24/7 online voice support, and locked backup vaults for your guild database.
                 </div>
             </div>
         </div>
 
+        <!-- FAQ Item 3 -->
         <div class="faq-item">
             <button class="faq-question">
-                <span>? Is Vortyx safe to add to my server?</span>
+                <span>? Is Vortyx secure and compliant with Discord Terms of Service?</span>
                 <span class="faq-icon">▼</span>
             </button>
             <div class="faq-answer">
                 <div class="faq-answer-content">
-                    Yes, Vortyx is fully verified and uses official Discord APIs. We take security seriously and do not store sensitive user details.
+                    Absolutely! Vortyx uses official Discord API v10 endpoints, respects all rate-limits, and does not harvest any private messages or personal user data.
                 </div>
             </div>
         </div>
     </div>
+
 </div>
 
+<!-- JAVASCRIPT FOR FAQ ACCORDION EXPAND/COLLAPSE -->
 <script>
-    // JavaScript to handle the toggle/accordion behavior
     document.querySelectorAll('.faq-question').forEach(button => {
         button.addEventListener('click', () => {
             const faqItem = button.parentElement;
             const answer = faqItem.querySelector('.faq-answer');
 
-            // Agar koi dusra FAQ pehle se open hai toh use close karein (Optional)
+            // Doosre active sections ko automatically close karne ke liye:
             document.querySelectorAll('.faq-item').forEach(item => {
                 if (item !== faqItem && item.classList.contains('active')) {
                     item.classList.remove('active');
@@ -182,7 +353,6 @@
                 }
             });
 
-            // Is item ko toggle karein
             faqItem.classList.toggle('active');
 
             if (faqItem.classList.contains('active')) {
@@ -196,4 +366,3 @@
 
 </body>
 </html>
-
