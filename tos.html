@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vortyx — Privacy Policy</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        darkBg: '#08080c',
+                        darkCard: '#0f0f15',
+                        vortyxGreen: '#00ff66',
+                        vortyxMuted: '#64748b',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;600;800&family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap');
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #08080c;
+            background-image: radial-gradient(rgba(255, 255, 255, 0.01) 1px, transparent 0);
+            background-size: 24px 24px;
+        }
+        .code-font {
+            font-family: 'JetBrains Mono', monospace;
+        }
+    </style>
+</head>
+<body class="text-white selection:bg-vortyxGreen selection:text-black overflow-x-hidden">
+
+    <!-- FIXED & CENTERED NAVBAR -->
+    <header class="sticky top-0 z-50 backdrop-blur-md bg-darkBg/80 border-b border-white/5 py-4 px-6 md:px-12 flex justify-between items-center">
+        <a href="index.html" class="flex items-center gap-3 z-10">
+            <img src="https://cdn.discordapp.com/attachments/1468117511223644171/1526473821861711942/logo.png?ex=6a572707&is=6a55d587&hm=3416e4d1fd75ea0a2238e6600f846e381d2319320efc0fdf41f101d2e79a8be6&" class="w-9 h-9 rounded-full border border-vortyxGreen/30 shadow-md shadow-vortyxGreen/10 object-cover" alt="Vortyx Avatar">
+            <span class="text-xl font-bold tracking-wide code-font">Vortyx<span class="text-vortyxGreen">_</span></span>
+        </a>
+        
+        <!-- Center Aligned Links -->
+        <nav class="hidden md:flex absolute left-1/2 -translate-x-1/2 gap-6 text-sm text-gray-400 font-medium">
+            <a href="index.html" class="hover:text-white transition">Features</a>
+            <a href="commands.html" class="hover:text-white transition">Commands</a>
+            <a href="status.html" class="hover:text-white transition">Status</a>
+            <a href="premium.html" class="hover:text-white transition">Premium</a>
+            <a href="about.html" class="hover:text-white transition">About</a>
+            <a href="faq.html" class="hover:text-white transition">FAQ</a>
+        </nav>
+        
+        <a href="https://discord.com/oauth2/authorize?client_id=1524664608768655441&permissions=8&integration_type=0&scope=bot+applications.commands" target="_blank" class="bg-vortyxGreen/10 border border-vortyxGreen text-vortyxGreen px-4 py-1.5 rounded-full text-xs font-semibold hover:bg-vortyxGreen hover:text-black transition duration-300 z-10">
+            <i class="fa-solid fa-right-to-bracket mr-1.5"></i>Login
+        </a>
+    </header>
+
+    <!-- CONTENT SECTION -->
+    <main class="py-16 px-6 max-w-4xl mx-auto">
+        
+        <!-- HEADER MODULE (MATCHING SCREENSHOT LAYOUT) -->
+        <div class="flex flex-col items-center text-center mb-10">
+            <div class="w-20 h-20 rounded-full border border-vortyxGreen/30 p-1 mb-6 shadow-[0_0_20px_rgba(0,255,102,0.15)]">
+                <img src="https://cdn.discordapp.com/attachments/1468117511223644171/1526473821861711942/logo.png?ex=6a572707&is=6a55d587&hm=3416e4d1fd75ea0a2238e6600f846e381d2319320efc0fdf41f101d2e79a8be6&" class="w-full h-full rounded-full object-cover" alt="Vortyx Logo">
+            </div>
+            <h1 class="text-4xl md:text-5xl font-extrabold code-font tracking-tight mb-2">Privacy Policy</h1>
+            <p class="text-xs text-vortyxMuted code-font">Effective Date: July 10, 2026</p>
+        </div>
+
+        <!-- STYLE MATCHING DISCLAIMER CARD -->
+        <div class="bg-white/[0.02] border border-white/5 border-l-[3px] border-l-vortyxGreen p-5 rounded-r-xl mb-12">
+            <p class="text-[11px] md:text-xs text-gray-400 font-semibold uppercase tracking-wider leading-relaxed">
+                Please read this privacy policy carefully. By authorizing, configuring, or using Vortyx on your servers, you agree to the collection, processing, and system management of your data in accordance with this policy. If you do not agree to these protocols, do not utilize our security systems.
+            </p>
+        </div>
+
+        <!-- MAIN DOCUMENT CONTENT -->
+        <div class="space-y-10 text-sm text-gray-300 leading-relaxed">
+            
+            <!-- SECTION 1 -->
+            <section class="border-b border-white/5 pb-8">
+                <h2 class="text-lg font-bold code-font text-vortyxGreen mb-4">1. Information We Collect</h2>
+                
+                <h3 class="text-white font-semibold text-xs uppercase tracking-wider mb-2 code-font">&gt; 1.1 Automatically Collected Data</h3>
+                <p class="mb-4 text-gray-400">When you interact with Vortyx on Discord, we may automatically collect specific data points provided by the Discord API:</p>
+                <ul class="space-y-2 pl-4 border-l border-white/10 mb-6">
+                    <li><strong class="text-white">User Information:</strong> User ID, Username, Discriminator, and Avatar hash.</li>
+                    <li><strong class="text-white">Guild Information:</strong> Guild (Server) ID, Name, Member Count, and Role Hierarchy.</li>
+                    <li><strong class="text-white">Message Data:</strong> Message content is processed in RAM for command execution and Automod scanning. We do not persistently store message content unless explicitly logged by a user (e.g., in a ticket transcript or audit log feature explicitly enabled by the server admin).</li>
+                </ul>
+
+                <h3 class="text-white font-semibold text-xs uppercase tracking-wider mb-2 code-font">&gt; 1.2 Data Provided by You</h3>
+                <ul class="space-y-2 pl-4 border-l border-white/10">
+                    <li><strong class="text-white">Configuration Data:</strong> Settings you apply to the bot (e.g., Welcome messages, Auto-role configurations, custom prefixes).</li>
+                    <li><strong class="text-white">Payment Information:</strong> Transaction IDs and premium tier status (processed via third-party providers; we do not store credit card details).</li>
+                    <li><strong class="text-white">Support Data:</strong> Information provided in support tickets for troubleshooting.</li>
+                </ul>
+            </section>
+
+            <!-- SECTION 2 -->
+            <section class="border-b border-white/5 pb-8">
+                <h2 class="text-lg font-bold code-font text-vortyxGreen mb-4">2. How We Use Your Data</h2>
+                <p class="mb-3 text-gray-400">We use your information solely for the following purposes:</p>
+                <ul class="space-y-2.5">
+                    <li class="flex items-start gap-2"><span class="text-vortyxGreen font-bold code-font">[+]</span> <span><strong class="text-white">Service Delivery:</strong> To operate the bot's core functions (moderation, music playback, temporary voice, auto-nickname formats).</span></li>
+                    <li class="flex items-start gap-2"><span class="text-vortyxGreen font-bold code-font">[+]</span> <span><strong class="text-white">Personalization:</strong> To remember your server-specific settings and preferences.</span></li>
+                    <li class="flex items-start gap-2"><span class="text-vortyxGreen font-bold code-font">[+]</span> <span><strong class="text-white">Security & Safety:</strong> To detect and prevent abuse, raids, or violations of our Terms of Service.</span></li>
+                    <li class="flex items-start gap-2"><span class="text-vortyxGreen font-bold code-font">[+]</span> <span><strong class="text-white">Communications:</strong> To inform you about critical updates, security alerts, or changes to this policy.</span></li>
+                </ul>
+            </section>
+
+            <!-- SECTION 3 -->
+            <section class="border-b border-white/5 pb-8">
+                <h2 class="text-lg font-bold code-font text-vortyxGreen mb-4">3. Data Retention</h2>
+                <p class="mb-4 text-gray-400">We retain your data only for as long as necessary to fulfill the purposes outlined in this policy.</p>
+                <ul class="space-y-3 pl-4 border-l border-white/10">
+                    <li><strong class="text-white">Configuration Data:</strong> Retained as long as the Bot is in your server. If the Bot is kicked, data may be deleted after 30 days of inactivity.</li>
+                    <li><strong class="text-white">Temporary Data:</strong> Message caches for moderation logic, "Snipe" or "Edit Logger" commands are cleared upon bot restart or after a maximum of 24 hours.</li>
+                    <li><strong class="text-white">Premium Data:</strong> Stored for legal and accounting purposes for up to 7 years.</li>
+                </ul>
+            </section>
+
+            <!-- SECTION 4 -->
+            <section class="border-b border-white/5 pb-8">
+                <h2 class="text-lg font-bold code-font text-vortyxGreen mb-4">4. Data Sharing & Third Parties</h2>
+                <p class="mb-4 text-gray-400">We do NOT sell your personal data. We may share data with trusted third-party service providers solely for the purpose of operating the Service:</p>
+                <ul class="space-y-3 pl-4 border-l border-white/10">
+                    <li><strong class="text-white">Hosting Providers:</strong> Powered securely on <span class="text-vortyxGreen">bothosting.net</span> to ensure continuous service operations and high availability.</li>
+                    <li><strong class="text-white">Database Providers:</strong> Securely isolated cloud configurations to protect active modules.</li>
+                    <li><strong class="text-white">Payment Processors:</strong> Standard industry partners (e.g., Stripe, PayPal, RazorPay) to process transactions safely.</li>
+                </ul>
+            </section>
+
+            <!-- SECTION 5 -->
+            <section class="border-b border-white/5 pb-8">
+                <h2 class="text-lg font-bold code-font text-vortyxGreen mb-4">5. Your Rights (GDPR & CCPA)</h2>
+                <p class="mb-4 text-gray-400">Regardless of your location, we extend these key privacy rights to all active users:</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs bg-white/[0.01] border border-white/5 p-4 rounded-xl">
+                    <div><strong class="text-white">Right to Access:</strong> You can request a copy of the configuration data we hold about you.</div>
+                    <div><strong class="text-white">Right to Rectification:</strong> You can request correction of inaccurate settings or information.</div>
+                    <div><strong class="text-white">Right to Erasure:</strong> You can request complete deletion of all configurations from our storage systems.</div>
+                    <div><strong class="text-white">Right to Restriction:</strong> You can ask us to pause or limit processing your configurations.</div>
+                </div>
+                <p class="mt-4 text-xs text-vortyxMuted">
+                    To execute any actions under these terms, please contact our Support team directly at <a href="mailto:sqayangamer@gmail.com" class="text-vortyxGreen underline">sqayangamer@gmail.com</a>.
+                </p>
+            </section>
+
+            <!-- SECTION 6 -->
+            <section class="border-b border-white/5 pb-8">
+                <h2 class="text-lg font-bold code-font text-vortyxGreen mb-4">6. Children's Privacy</h2>
+                <p>The Service is not directed to individuals under the age of 13. We do not knowingly collect personal data from children under 13. If we become aware that a child under 13 has provided us with personal data, we will immediately take steps to scrub such information from our records.</p>
+            </section>
+
+            <!-- SECTION 7 -->
+            <section class="pb-4">
+                <h2 class="text-lg font-bold code-font text-vortyxGreen mb-4">7. International Data Transfers</h2>
+                <p>Your information, including personal data, may be transferred to — and maintained on — servers located outside of your local state, country, or other governmental jurisdiction where data protection laws might differ. Your consent to this Privacy Policy, followed by your use of Vortyx, represents your agreement to that transfer.</p>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- FOOTER SECTION -->
+    <footer class="bg-black/40 border-t border-white/5 py-12 px-6 md:px-12 text-sm text-vortyxMuted">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+            <div>
+                <p class="text-white font-bold tracking-wide code-font mb-1">Vortyx Bot</p>
+                <p class="text-xs mb-3">© 2026 Vortyx Inc. All rights reserved.</p>
+                
+                <div class="flex gap-4 text-xs font-medium">
+                    <a href="tos.html" class="hover:text-vortyxGreen text-gray-400 transition code-font">&gt; Terms of Service</a>
+                    <span class="text-white/10">|</span>
+                    <a href="policy.html" class="text-vortyxGreen font-bold transition code-font">&gt; Privacy Policy</a>
+                </div>
+            </div>
+            <div class="flex gap-6 text-gray-400">
+                <a href="https://discord.gg/qdh44Zev8G" target="_blank" class="hover:text-vortyxGreen transition">Support</a>
+                <a href="commands.html" class="hover:text-vortyxGreen transition">Commands</a>
+                <a href="premium.html" class="hover:text-vortyxGreen transition">Pricing</a>
+                <a href="status.html" class="hover:text-vortyxGreen transition">Status</a>
+                <a href="about.html" class="hover:text-vortyxGreen transition">About</a>
+                <a href="faq.html" class="hover:text-vortyxGreen transition">FAQ</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+  </html>
+  
